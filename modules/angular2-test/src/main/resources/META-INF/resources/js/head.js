@@ -41,8 +41,9 @@ function bootstrapAngular(portletId) {
 	  }])
 	  .controller('Route1Controller', ['$scope', 'MyService', function ($scope, MyService) {
 		$scope.greetMe = 'Route1 Controller';
-		MyService.user(1).then(function(data) { // or users() for all.
-		    console.log(data);
+		$scope.users = [];
+		MyService.users().then(function(data) { // or user(1) for id = 1.
+		    $scope.users = data.data;
 		});
 	  }])
 	  .controller('Route2Controller', ['$scope', function ($scope) {
