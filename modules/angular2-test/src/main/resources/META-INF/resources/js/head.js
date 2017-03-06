@@ -22,14 +22,28 @@ function bootstrapAngular(portletId) {
 	            }
 	        })
 	    }])
+	  .factory('MyService', ['$http', function($http) {
+		  var url = "https://jsonplaceholder.typicode.com/users";
+		  return {
+		    users: function() {
+		      return $http.get(url);  
+		    },
+		    user: function(id) {
+		      return $http.get(url + "/" + id); 	
+		    }
+		  };
+	  }])
 	  .controller('MyController', ['$scope', '$state', function ($scope, $state) {
 		$scope.greetMe = 'World (' + portletId + ')';
 		$scope.go = function(route){
 		    $state.go(route);
 		}
 	  }])
-	  .controller('Route1Controller', ['$scope', function ($scope) {
+	  .controller('Route1Controller', ['$scope', 'MyService', function ($scope, MyService) {
 		$scope.greetMe = 'Route1 Controller';
+		MyService.user(1).then(function(data) { // or users() for all.
+		    console.log(data);
+		});
 	  }])
 	  .controller('Route2Controller', ['$scope', function ($scope) {
 		$scope.greetMe = 'Route2 Controller';
