@@ -30,6 +30,13 @@ function bootstrapAngular(portletId) {
 		    },
 		    user: function(id) {
 		      return $http.get(url + "/" + id); 	
+		    },
+		    foos: function()  {
+		    	return new Promise(function(resolve, reject){
+		    		Liferay.Service('/foo.foo/list-foos', function(data){
+		    			resolve(data);
+			    	});    
+		    	});
 		    }
 		  };
 	  }])
@@ -44,10 +51,16 @@ function bootstrapAngular(portletId) {
 		$scope.users = [];
 		MyService.users().then(function(data) { // or user(1) for id = 1.
 		    $scope.users = data.data;
+		    $scope.$apply();
 		});
 	  }])
-	  .controller('Route2Controller', ['$scope', function ($scope) {
+	  .controller('Route2Controller', ['$scope', 'MyService', function ($scope, MyService) {
 		$scope.greetMe = 'Route2 Controller';
+		$scope.foos = [];
+		MyService.foos().then(function(data) { 
+		    $scope.foos = data;
+		    $scope.$apply();
+		});
 	  }]);
 	  
 	angular.element(function() {
