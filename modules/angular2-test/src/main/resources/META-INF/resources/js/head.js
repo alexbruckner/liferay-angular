@@ -1,7 +1,7 @@
 function bootstrapAngular(portletId) {
 
 	angular.module(portletId, ['ui.router'])
-	   .config(['$locationProvider', '$stateProvider', function ($locationProvider, $stateProvider) {
+	   .config(['$stateProvider', function ($stateProvider) {
 	        $stateProvider
 	        .state('route1', {
 	            url: '/' + portletId + '/route1',
