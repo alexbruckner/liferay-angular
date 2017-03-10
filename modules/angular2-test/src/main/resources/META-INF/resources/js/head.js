@@ -51,7 +51,7 @@ function bootstrapAngular(portletId) {
 		$scope.users = [];
 		MyService.users().then(function(data) { // or user(1) for id = 1.
 		    $scope.users = data.data;
-		    $scope.$apply();
+		    //$scope.$apply(); why error?
 		});
 	  }])
 	  .controller('Route2Controller', ['$scope', 'MyService', function ($scope, MyService) {
