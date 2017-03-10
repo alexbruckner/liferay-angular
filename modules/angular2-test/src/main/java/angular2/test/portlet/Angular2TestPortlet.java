@@ -21,7 +21,7 @@ import org.osgi.service.component.annotations.Component;
 		"javax.portlet.security-role-ref=power-user,user",
 		"com.liferay.portlet.header-portlet-css=/css/main.css",
 		"com.liferay.portlet.header-portlet-javascript=/js/angular.min.js",
-		"com.liferay.portlet.header-portlet-javascript=/js/angular-ui-router.js",
+		"com.liferay.portlet.header-portlet-javascript=/js/angular-ui-router.min.js",
 		"com.liferay.portlet.header-portlet-javascript=/js/head.js",
 		"com.liferay.portlet.footer-portlet-javascript=/js/main.js"
 	},
