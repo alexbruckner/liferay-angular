@@ -3,13 +3,13 @@
 
 <div id="<portlet:namespace/>">
   <div ng-controller="MyController">
-    <div>Hello {{greetMe}}!</div>
+    <div>{{greetMe}}</div>
     <div>
-  		<a ng-click="go('route1')">Route 1</a>
-  		<a ng-click="go('route2')">Route 2</a>
+  		<button type="button" class="btn btn-primary" ng-click="go('route1')">Route 1</button>
+  		<button type="button" class="btn btn-success" ng-click="go('route2')">Route 2</button>
   	</div>
   	
-  	 <div ui-view="view">content</div>
+  	 <div ui-view="view">Click on Route 1 or Route 2.</div>
   	
   </div>
 </div>

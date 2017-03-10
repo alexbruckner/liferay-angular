@@ -41,13 +41,13 @@ function bootstrapAngular(portletId) {
 		  };
 	  }])
 	  .controller('MyController', ['$scope', '$state', function ($scope, $state) {
-		$scope.greetMe = 'World (' + portletId + ')';
+		$scope.greetMe = 'Portlet ID: ' + portletId;
 		$scope.go = function(route){
 		    $state.go(route);
 		}
 	  }])
 	  .controller('Route1Controller', ['$scope', 'MyService', function ($scope, MyService) {
-		$scope.greetMe = 'Route1 Controller';
+		$scope.greetMe = 'List of sample users from https://jsonplaceholder.typicode.com/users';
 		$scope.users = [];
 		MyService.users().then(function(data) { // or user(1) for id = 1.
 		    $scope.users = data.data;
@@ -55,7 +55,7 @@ function bootstrapAngular(portletId) {
 		});
 	  }])
 	  .controller('Route2Controller', ['$scope', 'MyService', function ($scope, MyService) {
-		$scope.greetMe = 'Route2 Controller';
+		$scope.greetMe = 'List of foos calling ServiceBuilder REST JSON API: /foo.foo/list-foos';
 		$scope.foos = [];
 		MyService.foos().then(function(data) { 
 		    $scope.foos = data;
