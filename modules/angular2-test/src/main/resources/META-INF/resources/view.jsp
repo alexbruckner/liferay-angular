@@ -7,9 +7,10 @@
     <div>
   		<button type="button" class="btn btn-primary" ng-click="go('route1')">Route 1</button>
   		<button type="button" class="btn btn-success" ng-click="go('route2')">Route 2</button>
+  		<button type="button" class="btn btn-warning" ng-click="go('route3')">Route 3</button>
   	</div>
   	
-  	 <div ui-view="view">Click on Route 1 or Route 2.</div>
+  	 <div ui-view="view">Click on Route 1 or Route 2 or Route 3.</div>
   	
   </div>
 </div>

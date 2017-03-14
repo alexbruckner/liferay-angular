@@ -21,8 +21,17 @@ function bootstrapAngular(portletId) {
 	                }
 	            }
 	        })
+	        .state('route3', {
+	            url: '/' + portletId + '/route3',
+	            views: {
+	                'view': {
+	                    templateUrl: '/o/angular2test/html/route3.html',
+	                    controller  : 'Route3Controller'
+	                }
+	            }
+	        })
 	    }])
-	  .factory('MyService', ['$http', function($http) {
+	  .factory('MyService', ['$http', '$q', function($http, $q) {
 		  var url = "https://jsonplaceholder.typicode.com/users";
 		  return {
 		    users: function() {
@@ -32,11 +41,13 @@ function bootstrapAngular(portletId) {
 		      return $http.get(url + "/" + id); 	
 		    },
 		    foos: function()  {
-		    	return new Promise(function(resolve, reject){
-		    		Liferay.Service('/foo.foo/list-foos', function(data){
-		    			resolve(data);
-			    	});    
-		    	});
+		    	var deferred = $q.defer();
+
+    			Liferay.Service('/foo.foo/list-foos', function(data){
+    				deferred.resolve(data);
+	    		});  
+    			
+    			return deferred.promise;
 		    }
 		  };
 	  }])
@@ -51,7 +62,6 @@ function bootstrapAngular(portletId) {
 		$scope.users = [];
 		MyService.users().then(function(data) { // or user(1) for id = 1.
 		    $scope.users = data.data;
-		    //$scope.$apply(); why error?
 		});
 	  }])
 	  .controller('Route2Controller', ['$scope', 'MyService', function ($scope, MyService) {
@@ -59,8 +69,11 @@ function bootstrapAngular(portletId) {
 		$scope.foos = [];
 		MyService.foos().then(function(data) { 
 		    $scope.foos = data;
-		    $scope.$apply();
 		});
+	  }])
+	  .controller('Route3Controller', ['$scope', function ($scope) {
+		$scope.greetMe = 'Plotter test';
+		
 	  }]);
 	  
 	angular.element(function() {
