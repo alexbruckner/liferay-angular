@@ -44,7 +44,19 @@ function bootstrapAngular(portletId) {
 		    	var deferred = $q.defer();
 
     			Liferay.Service('/foo.foo/list-foos', function(data){
-    				deferred.resolve(data);
+    				try {
+    					angular.fromJson(data);
+    			        deferred.resolve(data);
+    			    } catch (e) {
+    			    	console.error(data);
+    			    	if(data.startsWith("No JSON web service action")){
+	    			    	alert("Not found");
+	    			    	//TODO case for 403 errors to ask for page reload.
+	    			    	//or other action like automatic token recreation.
+    			    	} else {
+    			    		alert(data); // or use deferred.reject(data);
+    			    	}
+    			    }
 	    		});  
     			
     			return deferred.promise;
