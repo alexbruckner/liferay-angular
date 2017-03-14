@@ -1,6 +1,6 @@
 function bootstrapAngular(portletId) {
 
-	angular.module(portletId, ['ui.router'])
+	angular.module(portletId, ['ui.router', 'zingchart-angularjs'])
 	   .config(['$stateProvider', function ($stateProvider) {
 	        $stateProvider
 	        .state('route1', {
@@ -85,7 +85,23 @@ function bootstrapAngular(portletId) {
 	  }])
 	  .controller('Route3Controller', ['$scope', function ($scope) {
 		$scope.greetMe = 'Plotter test';
-		
+		$scope.chartId = portletId + "_chart1";
+		function getRandomInt(min, max) {
+		  min = Math.ceil(min);
+		  max = Math.floor(max);
+		  return Math.floor(Math.random() * (max - min)) + min;
+		}
+		var arr = [];
+		for (i=0; i < 10; i++) {
+			arr.push(getRandomInt(0,100));
+		}
+		$scope.myJson = {
+			    type : 'line',
+			    series : [
+			      { values : arr.slice(0,5) },
+			      { values : arr.slice(5,10) }
+			    ]
+			};
 	  }]);
 	  
 	angular.element(function() {
