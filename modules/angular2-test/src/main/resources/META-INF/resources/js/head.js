@@ -1,6 +1,6 @@
 function bootstrapAngular(portletId) {
 
-	angular.module(portletId, ['ui.router', 'zingchart-angularjs'])
+	angular.module(portletId, ['ui.router', 'zingchart-angularjs', 'heatmap'])
 	   .config(['$stateProvider', function ($stateProvider) {
 	        $stateProvider
 	        .state('route1', {
@@ -36,6 +36,15 @@ function bootstrapAngular(portletId) {
 	                'view': {
 	                    templateUrl: '/o/angular2test/html/route4.html',
 	                    controller  : 'Route4Controller'
+	                }
+	            }
+	        })
+	        .state('route5', {
+	            url: '/' + portletId + '/route5',
+	            views: {
+	                'view': {
+	                    templateUrl: '/o/angular2test/html/route5.html',
+	                    controller  : 'Route5Controller'
 	                }
 	            }
 	        })
@@ -93,7 +102,7 @@ function bootstrapAngular(portletId) {
 		});
 	  }])
 	  .controller('Route3Controller', ['$scope', function ($scope) {
-		$scope.greetMe = 'Plotter test';
+		$scope.greetMe = 'Zing Chart Plotter test';
 		$scope.chartId = portletId + "_chart1";
 		function getRandomInt(min, max) {
 		  min = Math.ceil(min);
@@ -113,7 +122,7 @@ function bootstrapAngular(portletId) {
 			};
 	  }])
 	  .controller('Route4Controller', ['$scope', 'MyService', function ($scope, MyService) {
-		$scope.greetMe = 'Heatmap test!';
+		$scope.greetMe = 'Zing Chart Heatmap test';
 		$scope.chartId = portletId + "_chart2";
 		$scope.myJson = {
 				  "type": "heatmap",
@@ -164,6 +173,42 @@ function bootstrapAngular(portletId) {
 				  ]
 				};
 			
+	  }])
+	  .controller('Route5Controller', ['$scope', '$heatmap', function ($scope, $heatmap) {
+		$scope.greetMe = 'heathmap.js Heatmap';
+		 // $heatmap is the service that makes heatmap instances accessible by name
+		  // e.g. $heatmap.getInstance('heatmapId') will return the heatmap.js instance to access it manually
+		    function generateRandomData(len) {
+		      var max = 100;
+		      var min = 1;
+		      var maxX = 600; //document.body.clientWidth;
+		      var maxY = 400; //document.body.clientHeight;
+		      var data = [];
+		      while (len--) {
+		        data.push({
+		          x: ((Math.random() * maxX) >> 0),
+		          y: ((Math.random() * maxY) >> 0),
+		          value: ((Math.random() * max + min) >> 0),
+		          radius: ((Math.random() * 50 + min) >> 0)
+		        });
+		      }
+		      return {
+		        max: max,
+		        min: min,
+		        data: data
+		      }
+		    };
+		    // data can be set manually with the heatmap data attribute
+		    $scope.heatmapData = generateRandomData(1000);
+		    // the config attribute will configure the heatmap directive instance
+		    $scope.heatmapConfig = {
+		      blur: .9,
+		      opacity:.5
+		    };
+		    
+		    $scope.refresh = function(){
+		    	$scope.heatmapData = generateRandomData(1000);
+		    }
 	  }]);
 	  
 	angular.element(function() {

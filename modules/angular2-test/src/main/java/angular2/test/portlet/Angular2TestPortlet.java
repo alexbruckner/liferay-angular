@@ -24,6 +24,8 @@ import org.osgi.service.component.annotations.Component;
 		"com.liferay.portlet.header-portlet-javascript=/js/angular-ui-router.min.js",
 		"com.liferay.portlet.header-portlet-javascript=/js/zingchart.min.js",
 		"com.liferay.portlet.header-portlet-javascript=/js/zingchart-angularjs.js",
+		"com.liferay.portlet.header-portlet-javascript=/js/heatmap.js",
+		"com.liferay.portlet.header-portlet-javascript=/js/angular-heatmap.js",
 		"com.liferay.portlet.header-portlet-javascript=/js/head.js",
 		"com.liferay.portlet.footer-portlet-javascript=/js/main.js"
 	},
