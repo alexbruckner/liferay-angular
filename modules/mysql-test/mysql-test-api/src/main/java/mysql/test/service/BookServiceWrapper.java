@@ -48,6 +48,11 @@ public class BookServiceWrapper implements BookService,
 	}
 
 	@Override
+	public mysql.test.model.Book addBook(java.lang.String title) {
+		return _bookService.addBook(title);
+	}
+
+	@Override
 	public BookService getWrappedService() {
 		return _bookService;
 	}

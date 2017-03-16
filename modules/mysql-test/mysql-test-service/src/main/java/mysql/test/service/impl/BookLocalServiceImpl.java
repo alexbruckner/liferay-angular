@@ -45,4 +45,10 @@ public class BookLocalServiceImpl extends BookLocalServiceBaseImpl {
 	public List<Book> listBooks() {
 		return bookPersistence.findAll();
 	}
+	
+	public Book addBook(String title) {
+		Book book = bookPersistence.create(counterLocalService.increment());
+		book.setTitle(title);
+		return addBook(book);
+	}
 }

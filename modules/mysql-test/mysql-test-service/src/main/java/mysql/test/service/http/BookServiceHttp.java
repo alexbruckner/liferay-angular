@@ -81,6 +81,35 @@ public class BookServiceHttp {
 		}
 	}
 
+	public static mysql.test.model.Book addBook(HttpPrincipal httpPrincipal,
+		java.lang.String title) {
+		try {
+			MethodKey methodKey = new MethodKey(BookServiceUtil.class,
+					"addBook", _addBookParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, title);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(e);
+			}
+
+			return (mysql.test.model.Book)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(BookServiceHttp.class);
 	private static final Class<?>[] _listBooksParameterTypes0 = new Class[] {  };
+	private static final Class<?>[] _addBookParameterTypes1 = new Class[] {
+			java.lang.String.class
+		};
 }

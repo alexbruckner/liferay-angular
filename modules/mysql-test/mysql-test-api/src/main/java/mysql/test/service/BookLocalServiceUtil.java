@@ -180,6 +180,10 @@ public class BookLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
+	public static mysql.test.model.Book addBook(java.lang.String title) {
+		return getService().addBook(title);
+	}
+
 	/**
 	* Adds the book to the database. Also notifies the appropriate model listeners.
 	*

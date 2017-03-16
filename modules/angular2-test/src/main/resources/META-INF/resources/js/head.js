@@ -58,10 +58,10 @@ function bootstrapAngular(portletId) {
 		    user: function(id) {
 		      return $http.get(url + "/" + id); 	
 		    },
-		    foos: function()  {
+		    books: function()  {
 		    	var deferred = $q.defer();
 
-    			Liferay.Service('/foo.foo/list-foos', function(data){
+    			Liferay.Service('/mysqltest.book/list-books', function(data){
     				try {
     					angular.fromJson(data);
     			        deferred.resolve(data);
@@ -93,10 +93,10 @@ function bootstrapAngular(portletId) {
 		});
 	  }])
 	  .controller('Route2Controller', ['$scope', 'MyService', function ($scope, MyService) {
-		$scope.greetMe = 'List of foos calling ServiceBuilder REST JSON API: /foo.foo/list-foos';
-		$scope.foos = [];
-		MyService.foos().then(function(data) { 
-		    $scope.foos = data;
+		$scope.greetMe = 'List of books calling ServiceBuilder REST JSON API via external mysql db: /mysqltest.book/list-books';
+		$scope.books = [];
+		MyService.books().then(function(data) { 
+		    $scope.books = data;
 		});
 	  }])
 	  .controller('Route3Controller', ['$scope', function ($scope) {

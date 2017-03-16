@@ -47,4 +47,8 @@ public class BookServiceImpl extends BookServiceBaseImpl {
 		return BookLocalServiceUtil.listBooks();
 	}
 	
+	public Book addBook(String title) {
+		return BookLocalServiceUtil.addBook(title);
+	}
+	
 }

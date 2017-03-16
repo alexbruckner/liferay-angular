@@ -168,6 +168,8 @@ public interface BookLocalService extends BaseLocalService,
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
 		Projection projection);
 
+	public Book addBook(java.lang.String title);
+
 	/**
 	* Adds the book to the database. Also notifies the appropriate model listeners.
 	*

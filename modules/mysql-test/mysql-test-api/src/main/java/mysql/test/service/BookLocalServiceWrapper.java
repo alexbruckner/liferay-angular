@@ -184,6 +184,11 @@ public class BookLocalServiceWrapper implements BookLocalService,
 		return _bookLocalService.dynamicQueryCount(dynamicQuery, projection);
 	}
 
+	@Override
+	public mysql.test.model.Book addBook(java.lang.String title) {
+		return _bookLocalService.addBook(title);
+	}
+
 	/**
 	* Adds the book to the database. Also notifies the appropriate model listeners.
 	*

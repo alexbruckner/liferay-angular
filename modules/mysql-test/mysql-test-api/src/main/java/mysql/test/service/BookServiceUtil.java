@@ -55,6 +55,10 @@ public class BookServiceUtil {
 		return getService().listBooks();
 	}
 
+	public static mysql.test.model.Book addBook(java.lang.String title) {
+		return getService().addBook(title);
+	}
+
 	public static BookService getService() {
 		return _serviceTracker.getService();
 	}

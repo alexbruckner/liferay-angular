@@ -79,5 +79,19 @@ public class BookServiceSoap {
 		}
 	}
 
+	public static mysql.test.model.BookSoap addBook(java.lang.String title)
+		throws RemoteException {
+		try {
+			mysql.test.model.Book returnValue = BookServiceUtil.addBook(title);
+
+			return mysql.test.model.BookSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(BookServiceSoap.class);
 }
