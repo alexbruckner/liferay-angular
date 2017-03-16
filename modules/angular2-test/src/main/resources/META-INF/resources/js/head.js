@@ -67,10 +67,8 @@ function bootstrapAngular(portletId) {
     			        deferred.resolve(data);
     			    } catch (e) {
     			    	console.error(data);
-    			    	if(data.startsWith("No JSON web service action")){
-	    			    	alert("Not found");
-	    			    	//TODO case for 403 errors to ask for page reload.
-	    			    	//or other action like automatic token recreation.
+    			    	if(data.startsWith("Access denied to")){
+	    			    	alert(data + ". Session expired or you are not authorized to access the resource. Please refresh the page.");
     			    	} else {
     			    		alert(data); // or use deferred.reject(data);
     			    	}

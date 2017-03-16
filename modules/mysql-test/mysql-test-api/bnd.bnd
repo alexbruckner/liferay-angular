@@ -1,0 +1,9 @@
+Bundle-Name: mysql-test-api
+Bundle-SymbolicName: mysql.test.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	mysql.test.exception,\
+	mysql.test.model,\
+	mysql.test.service,\
+	mysql.test.service.persistence
+-includeresource: META-INF/service.xml=../mysql-test-service/service.xml

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean class="mysql.test.service.impl.BookLocalServiceImpl" id="mysql.test.service.BookLocalService" />
+	<bean class="mysql.test.service.impl.BookServiceImpl" id="mysql.test.service.BookService" />
+	<bean class="mysql.test.service.persistence.impl.BookPersistenceImpl" id="mysql.test.service.persistence.BookPersistence" parent="basePersistence">
+		<property name="dataSource" ref="extDataSource" />
+	</bean>
+</beans>

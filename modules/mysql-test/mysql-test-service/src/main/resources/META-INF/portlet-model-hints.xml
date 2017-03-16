@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="mysql.test.model.Book">
+		<field name="id" type="long" />
+		<field name="title" type="String" />
+	</model>
+</model-hints>

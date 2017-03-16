@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-destroy-method="destroy" default-init-method="afterPropertiesSet"
+ xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+ 
+ <bean class="com.liferay.portal.dao.jdbc.spring.DataSourceFactoryBean" id="dataSourceBean">
+     <property name="propertyPrefix" value="jdbc." />
+     <property name="properties">
+        <props>
+         <prop key="jdbc.driverClassName">com.mysql.jdbc.Driver</prop>
+         <prop key="jdbc.url">jdbc:mysql://localhost:3306/test</prop>
+         <prop key="jdbc.username">root</prop>
+       <prop key="jdbc.password">mysql</prop>
+     </props>
+ </property>
+ </bean>
+ <bean class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy" id="liferayDataSource">
+      <property name="targetDataSource" ref="dataSourceBean" />
+ </bean>
+ <alias alias="extDataSource" name="liferayDataSource" />
+</beans>
