@@ -82,6 +82,7 @@ function bootstrapAngular(portletId) {
 	  .controller('MyController', ['$scope', '$state', function ($scope, $state) {
 		$scope.greetMe = 'Portlet ID: ' + portletId;
 		$scope.go = function(route){
+			$scope.selected = route;
 		    $state.go(route);
 		}
 	  }])
