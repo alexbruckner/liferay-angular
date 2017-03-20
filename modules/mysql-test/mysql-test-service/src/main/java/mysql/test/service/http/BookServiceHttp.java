@@ -107,9 +107,35 @@ public class BookServiceHttp {
 		}
 	}
 
+	public static java.lang.String listFoos(HttpPrincipal httpPrincipal) {
+		try {
+			MethodKey methodKey = new MethodKey(BookServiceUtil.class,
+					"listFoos", _listFoosParameterTypes2);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(e);
+			}
+
+			return (java.lang.String)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(BookServiceHttp.class);
 	private static final Class<?>[] _listBooksParameterTypes0 = new Class[] {  };
 	private static final Class<?>[] _addBookParameterTypes1 = new Class[] {
 			java.lang.String.class
 		};
+	private static final Class<?>[] _listFoosParameterTypes2 = new Class[] {  };
 }

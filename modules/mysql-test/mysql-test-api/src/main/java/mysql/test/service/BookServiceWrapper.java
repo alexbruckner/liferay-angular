@@ -43,6 +43,11 @@ public class BookServiceWrapper implements BookService,
 	}
 
 	@Override
+	public java.lang.String listFoos() {
+		return _bookService.listFoos();
+	}
+
+	@Override
 	public java.util.List<mysql.test.model.Book> listBooks() {
 		return _bookService.listBooks();
 	}

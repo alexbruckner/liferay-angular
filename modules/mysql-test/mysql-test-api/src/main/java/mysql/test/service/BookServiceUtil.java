@@ -51,6 +51,10 @@ public class BookServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static java.lang.String listFoos() {
+		return getService().listFoos();
+	}
+
 	public static java.util.List<mysql.test.model.Book> listBooks() {
 		return getService().listBooks();
 	}

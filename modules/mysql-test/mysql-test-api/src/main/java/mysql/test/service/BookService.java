@@ -61,6 +61,8 @@ public interface BookService extends BaseService {
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
 
+	public java.lang.String listFoos();
+
 	public List<Book> listBooks();
 
 	public Book addBook(java.lang.String title);

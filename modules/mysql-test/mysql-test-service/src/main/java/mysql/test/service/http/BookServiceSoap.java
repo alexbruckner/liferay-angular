@@ -93,5 +93,18 @@ public class BookServiceSoap {
 		}
 	}
 
+	public static java.lang.String listFoos() throws RemoteException {
+		try {
+			java.lang.String returnValue = BookServiceUtil.listFoos();
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(BookServiceSoap.class);
 }

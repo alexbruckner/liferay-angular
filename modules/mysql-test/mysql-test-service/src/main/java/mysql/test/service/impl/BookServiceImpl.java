@@ -16,6 +16,9 @@ package mysql.test.service.impl;
 
 import java.util.List;
 
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
+
 import aQute.bnd.annotation.ProviderType;
 import mysql.test.model.Book;
 import mysql.test.service.BookLocalServiceUtil;
@@ -49,6 +52,13 @@ public class BookServiceImpl extends BookServiceBaseImpl {
 	
 	public Book addBook(String title) {
 		return BookLocalServiceUtil.addBook(title);
+	}
+	
+	public String listFoos(){
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+		System.out.println(String.valueOf(serviceContext.getHeaders()));
+		//TODO call another service (foo). FeignClient?
+		return "Lolz";
 	}
 	
 }
