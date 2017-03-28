@@ -16,13 +16,11 @@ package mysql.test.service.impl;
 
 import java.util.List;
 
-import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
-
 import aQute.bnd.annotation.ProviderType;
 import mysql.test.model.Book;
 import mysql.test.service.BookLocalServiceUtil;
 import mysql.test.service.base.BookServiceBaseImpl;
+import mysql.test.service.util.FooClient;
 
 /**
  * The implementation of the book remote service.
@@ -55,10 +53,8 @@ public class BookServiceImpl extends BookServiceBaseImpl {
 	}
 	
 	public String listFoos(){
-		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
-		System.out.println(String.valueOf(serviceContext.getHeaders()));
-		//TODO call another service (foo). FeignClient?
-		return "Lolz";
+		String foos = new FooClient(FooClient.Protocol.HTTP,"localhost",8080,"test@liferay.com", "liferay").listFoos();
+		return foos;
 	}
 	
 }
