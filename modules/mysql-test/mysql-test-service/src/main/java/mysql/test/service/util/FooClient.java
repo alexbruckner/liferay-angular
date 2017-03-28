@@ -15,34 +15,19 @@ public class FooClient {
 	
 	public static String API_ENDPOINT = "/foo.foo";
 	public static String LIST_FOOS = "/list-foos";
-	
-	public static enum Protocol {
-		HTTP("http://"), HTTPS("https://");
-		private String protocol;
-		Protocol(String protocol){
-			this.protocol = protocol;
-		}
-		public String toString() {
-			return protocol;
-		}
-	}
-	
-	private final Protocol protocol;
-	private final String host;
-	private final int port;
+		
+	private final String url;
 	private final String username;
 	private final String password;
 	
-	public FooClient(Protocol protocol, String host, int port, String username, String password) {
-		this.protocol = protocol;
-		this.host = host;
-		this.port = port;
+	public FooClient(String url, String username, String password) {
+		this.url = url;
 		this.username = username;
 		this.password = password;
 	}
 	
 	private String getConnectionString(String target) {
-		return protocol + host + ":" + port + "/api/jsonws" + API_ENDPOINT + target;
+		return url + "/api/jsonws" + API_ENDPOINT + target;
 	}
 	
 	public String listFoos() {
