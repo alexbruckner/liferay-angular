@@ -61,18 +61,8 @@ public class BookServiceImpl extends BookServiceBaseImpl {
 	public String listFoos(){
 		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
 		String url = serviceContext.getPortalURL();
-		long userId = serviceContext.getUserId();
-		String user = "?";
-		try {
-			User userEntity = UserLocalServiceUtil.getUser(userId);
-			if (userEntity != null) {
-				user = userEntity.getEmailAddress();
-			}
-		} catch (PortalException e) {
-			e.printStackTrace();
-		}
-		//TODO store remote service user password somewhere?
-		String foos = new FooClient(url, user, "liferay").listFoos();
+		//TODO store remote service calling user & password somewhere?
+		String foos = new FooClient(url, "test@liferay.com", "liferay").listFoos();
 		return foos;
 	}
 	
